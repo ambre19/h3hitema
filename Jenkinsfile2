@@ -1,16 +1,19 @@
 pipeline {
     agent any
-
     stages {
-        stage('Clean mon projet') {
+        stage('Checkout-SCM') {
             steps {
                 cleanWs()
             }
         }
-       
-        stage('CkeckOut SCM') {
+
+        stage('install-apache2') {
             steps {
-                // git branch: 'main', credentialsId: 'root', url: 'https://github.com/ambre19/h3hitema.git'
-                git branch: 'main', credentialsId: 'user-ambre19', url: 'https://github.com/ambre19/h3hitema.git'
+                sh 'sudo apt update'
+                sh 'sudo apt install apache2 -y'
+                sh 'sudo systemctl enable --now apache2'
+                sh 'sudo systemctl status apache2'
             }
         }
+    }
+}
