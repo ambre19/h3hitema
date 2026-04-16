@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout-SCM') {
+            steps {
+                cleanWs()
+                git branch: 'main', credentialsId: 'github-ambre19', url: 'https://github.com/ambre19/h3hitema.git'
+            }
+        }
+
+        stage('Build-Image-nginx') {
+            steps {
+                sh 'docker build -t mon-nginx .'
+            }
+        }
+    }
+}
