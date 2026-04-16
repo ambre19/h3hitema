@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clean mon projet') {
+            steps {
+                cleanWs()
+            }
+        }
+       
+        stage('CkeckOut SCM') {
+            steps {
+                // git branch: 'main', credentialsId: 'root', url: 'https://github.com/benjamincrouzet/b3depotgithub.git'
+                git branch: 'main', credentialsId: 'user-ambre19', url: 'https://github.com/benjamincrouzet/b3depotgithub.git'
+            }
+        }
