@@ -9,6 +9,12 @@ pipeline {
             }
         }
 
+        stage('Build-image') {
+            steps {
+                sh 'docker build -t mon-apache2 .'
+            }
+        }
+
         stage('Create-container') {
             steps {
                 sh '''
@@ -16,7 +22,6 @@ pipeline {
                     docker rm contapache01 2>/dev/null || true
                 '''
                 sh 'docker run -d --name contapache01 --hostname contapache01 -v ./volumecontapache01:/var/www/html --network macvlan192 --ip 192.168.1.20 mon-apache2'
-                sh 'docker start contapache01'
                 sh 'docker ps && docker exec contapache01 ifconfig'
                 sh 'docker exec contapache01 /etc/init.d/apache2 start'
                 sh 'docker exec contapache01 /etc/init.d/apache2 status'
