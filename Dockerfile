@@ -23,7 +23,7 @@ RUN mkdir /var/run/sshd && ssh-keygen -A
 #RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 
 ### config ssh_config
-RUN sed -i 's/#PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN echo 'Port 22' >> /etc/ssh/sshd_config
 RUN echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
