@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout-SCM') {
             steps {
                 cleanWs()
-                git branch: 'main', credentialsId: 'user-ambre19', url: 'https://github.com/srcmed/b3depogithub.git'
+                git branch: 'main', credentialsId: 'user-ambre19', url: 'https://github.com/ambre19/h3hitema.git'
             }
         }
 
